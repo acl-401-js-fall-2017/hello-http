@@ -11,7 +11,7 @@ Your server should:
     for the greeting salutation, otherwise `hello`
   * If name is not included, use `stranger`, otherwise use name in greeting
 1. Responds with one random of (at least) three interesting facts about http (up to you) when method is 
-GET and the url (path) is `/fact`. Just make sure that each interesting fact as the word `http` somewhere in
+GET and the url (path) is `/fact`. **Return the fact as an object with a fact property and make sure Content-Type is `application/json`**. (Make sure that each interesting fact as the word `http` somewhere in the fact, this will make it easier to test)
 the fact.
 1. BONUS: You can add other routes if you like :D
 1. Any other request that doesn't match a defined `METHOD` and url `path` should return status code 404 Not Found 
