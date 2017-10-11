@@ -41,7 +41,8 @@ describe('app test', ()=>{
         request.get('/fact')
             .end((err, res) =>{
                 if(err) return done(err);
-                assert.equal(res.text, 'HTML is BOO BOP');
+                const validResponses = ['HTML is BOO BOP','HTML is BOO BOP1', 'HTML is BOO BOP2'];
+                assert.ok(validResponses.includes(res.text));
                 done();
             });
 
