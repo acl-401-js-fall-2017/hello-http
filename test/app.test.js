@@ -24,7 +24,7 @@ describe('/greeting App', () => {
         request.get('/greeting/zac')
             .end((err, res) => {
                 if(err) done(err);
-                assert.equal(res.text, 'hello joe');
+                assert.equal(res.text, 'hello zac');
                 done();
             });
     });
