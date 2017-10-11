@@ -8,11 +8,20 @@ const app = require('../lib/app');
 const request = chai.request(app);
 
 describe('app test', ()=>{
-    it('GET /greeting/<name> should respond with greeting',(done) => {
+    it('GET /greeting/<name> should respond with Hello <name>',(done) => {
         request.get('/greeting/Shane')
             .end((err, res) =>{
                 if(err) return done(err);
                 assert.equal(res.text, '<h1>Hello Shane</h1>');
+                done();
+            });
+    });
+
+    it('GET /greeting should respond with Hello Stanger', (done) => {
+        request.get('/greeting')
+            .end((err, res) =>{
+                if(err) return done(err);
+                assert.equal(res.text, '<h1>Hello Stranger</h1>');
                 done();
             });
     });
