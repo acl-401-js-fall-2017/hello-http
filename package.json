@@ -1,0 +1,21 @@
+{
+  "name": "node-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "start": "nodemon server.js"
+  },
+  "author": "Andrew Bodey <A.s.bodey@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
