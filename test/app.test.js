@@ -9,18 +9,27 @@ const assert = chai.assert;
 const request = chai.request(app);
 
 describe('server', () => {
-    it('runs', done => {
-        request.get('/test')
+    it('responds with a greeting to /greeting/<name>', done => {
+        request.get('/greeting/Mie')
             .end((err, res) => {
                 if(err) return done(err);
-                assert.equal(res.text, 'test');
+                assert.equal(res.text, 'Howdy Mie');
                 done();
             });
-        request.post('/hello')
-            .send({this: 'is', an: 'object'})
-            .set('accept', 'json')
-            .end((err, res) => {
-                if(err) return done(err);
-            });
     });
+
+    // it('runs', done => {
+    //     request.get('/test')
+    //         .end((err, res) => {
+    //             if(err) return done(err);
+    //             assert.equal(res.text, 'test');
+    //             done();
+    //         });
+    //     request.post('/hello')
+    //         .send({this: 'is', an: 'object'})
+    //         .set('accept', 'json')
+    //         .end((err, res) => {
+    //             if(err) return done(err);
+    //         });
+    // });
 });
