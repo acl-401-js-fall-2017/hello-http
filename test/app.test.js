@@ -42,11 +42,11 @@ describe('server', () => {
     });
 
     describe('fact', () => {
-        it('returns a random http fact when called', () => {
+        it('returns a random http fact when called', done => {
             request.get('/fact')
                 .end((err, res) => {
                     if(err) return done(err);
-                    assert.ok(/^HTTP fact: /.test(res.text));
+                    assert.ok(/http|HTTP/.test(JSON.parse(res.text).fact));
                     done();
                 });
         });
