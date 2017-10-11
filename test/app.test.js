@@ -9,13 +9,24 @@ const assert = chai.assert;
 const request = chai.request(app);
 
 describe('server', () => {
-    it('responds with a greeting to /greeting/<name>', done => {
-        request.get('/greeting/Mie')
-            .end((err, res) => {
-                if(err) return done(err);
-                assert.equal(res.text, 'Howdy Mie');
-                done();
-            });
+    describe('greeting', () => {
+        it('responds with a greeting to /greeting/<name>', done => {
+            request.get('/greeting/Mie')
+                .end((err, res) => {
+                    if(err) return done(err);
+                    assert.equal(res.text, 'Howdy Mie');
+                    done();
+                });
+        });
+
+        it('responds with "stranger" when name is not provided', done => {
+            request.get('/greeting')
+                .end((err, res) => {
+                    if(err) return done(err);
+                    assert.equal(res.text, 'Howdy Stranger');
+                    done();
+                });
+        });
     });
 
     // it('runs', done => {
