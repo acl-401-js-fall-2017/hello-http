@@ -1,12 +1,17 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../lib/app');
+const http = require('http');
 chai.use(chaiHttp);
 const assert = chai.assert;
 
-const request = chai.request(app);
 
 describe('hello-http app', () =>{
+
+    const server = http.createServer(app);
+    const request = chai.request(server);
+
+    after(done => server.close(done));
 
     it('GET /greeting/name', (done) =>{
         let name = 'Chewy';
@@ -18,7 +23,7 @@ describe('hello-http app', () =>{
             });
     });
 
-    // it('Returns a 404 message', () => {
+    // it.skip('Returns a 404 message', () => {
     //     request.get('/bad')
     //         .end((res, res) =>{
     //             if(!err)return done('error from http response');
