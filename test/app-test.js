@@ -10,7 +10,7 @@ const request = chai.request(app);
 describe('http greeting', () => {
     
     it('GET /greeting', done => {
-        request.get('./greeting')
+        request.get('/greeting')
             .end( (err, res) => {
                 if (err) return done(err);
                 assert.equal(res.text, 'hello, stranger');
