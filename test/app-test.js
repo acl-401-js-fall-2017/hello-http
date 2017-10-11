@@ -47,7 +47,6 @@ describe('http module', () => {
             .end( (err, res) => {
                 if (err) return done(err);
                 assert.equal(typeof res.body, 'object' );
-                console.log('res.body.fact is', res.body.fact);
                 assert.ok(res.body.fact);
                 done();
             });
@@ -57,7 +56,6 @@ describe('http module', () => {
         request.get('/fact')
             .end( (err, res) => {
                 if (err, res) return done(err);
-                console.log('res.body.fact is', res.body.fact);
                 assert.ok(res.body.fact.includes('http'));
                 done();
             });
