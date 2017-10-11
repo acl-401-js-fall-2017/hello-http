@@ -5,6 +5,7 @@ const assert = chai.assert;
 const app = require('../lib/app');
 
 const request = chai.request(app);
+let name = null;
 
 describe('Tests Http', () => {
     it('GET request returns DEFAULT greeting', (done) => {
@@ -17,10 +18,10 @@ describe('Tests Http', () => {
     });
 
     it('GET request returns greeting with NAME', (done) => {
-        request.get('/greeting/Christina')
+        request.get(`/greeting/${name}`)
             .end( (err, res) => {
                 if(err) return done(err);
-                assert.equal(res.text, 'Hello Christina');
+                assert.equal(res.text, `Hello ${name}`);
                 done();
             });
     });
