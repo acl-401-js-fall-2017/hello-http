@@ -37,6 +37,15 @@ describe('app test', ()=>{
 
     });
     
+    it('GET /fact should repond with html fact', (done)=>{
+        request.get('/fact')
+            .get((err, res)=>{
+                if(err) return done(err);
+                assert.equal(res.text, 'HTML is BOO BOP');
+                done();
+            });
+
+    });
 
 
 });
