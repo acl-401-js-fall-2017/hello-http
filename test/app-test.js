@@ -18,7 +18,7 @@ describe('http greeting', () => {
             });
     });
 
-    it('GET /greeting/foo returns "hello, foo" text', done => {
+    it.only('GET /greeting/foo returns "hello, foo" text', done => {
         request.get('/greeting/foo')
             .end( (err, res) => {
                 if (err) return done(err);
@@ -27,7 +27,7 @@ describe('http greeting', () => {
             });
     });
 
-    it.skip('GET /greeting/foo?custom=hi returns "hi, foo" text', done => {
+    it('GET /greeting/foo?custom=hi returns "hi, foo" text', done => {
         request.get('/greeting/foo?custom=hi')
             .end( (err, res) => {
                 if (err) return done(err);
@@ -40,7 +40,6 @@ describe('http greeting', () => {
         request.get('/fact')
             .end( (err, res) => {
                 if (err) return done(err);
-
                 assert.equal(typeof res.body, 'object' );
                 assert.ok(res.body.fact);
                 done();
