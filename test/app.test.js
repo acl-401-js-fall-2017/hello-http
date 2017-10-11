@@ -38,18 +38,27 @@ describe('server', () => {
         });
     });
 
-    // it('runs', done => {
-    //     request.get('/test')
-    //         .end((err, res) => {
-    //             if(err) return done(err);
-    //             assert.equal(res.text, 'test');
-    //             done();
-    //         });
-    //     request.post('/hello')
-    //         .send({this: 'is', an: 'object'})
-    //         .set('accept', 'json')
-    //         .end((err, res) => {
-    //             if(err) return done(err);
-    //         });
-    // });
+    describe('valid/invalid paths', () => {
+        it('returns status code 404 when given a bad path', done => {
+            request.get('/test')
+                .end((err, res) => {
+                    if(err) return done(err);
+                    assert.equal(res.text, 'test');
+                    done();
+                });
+            
+        });
+            
+        it('returns status code 404 when given something other than a get request', () => {
+            request.post('/greeting')
+                .send({this: 'is', an: 'object'})
+                .set('accept', 'json')
+                .end((err, res) => {
+                    if(err) console.log(res.status);
+                    console.log(res.status);
+                    assert.equal();
+                    done();
+                });
+        });
+    });
 });
