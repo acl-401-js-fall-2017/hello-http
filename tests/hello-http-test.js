@@ -32,14 +32,19 @@ describe('fact Test', () => {
         request.get('/fact/')
             .end((err,res) => {
                 if(err) return done(err);
-                console.log('response:',res.text);
                 assert.ok(res.body.fact);
                 done();
             });
     });
-    
+});
 
-
-
-
+describe('Not Found on bad request', () => {
+    it.only('should return 404 with text of CANNOT <method> <path>', (done) =>{
+        request.delete('/facty')
+            .end((err, res) => {
+                assert.equal( res.statusCode, 404);
+                assert.equal(res.text, 'CANNOT DELETE /facty'); 
+                done();
+            });
+    });
 });
