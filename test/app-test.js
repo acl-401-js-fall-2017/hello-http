@@ -40,9 +40,9 @@ describe('http greeting', () => {
         request.get('/fact')
             .end( (err, res) => {
                 if (err) return done(err);
-                const resObject = res.body;
-                assert.ok(resObject.fact);
+
                 assert.equal(typeof res.body, 'object' );
+                assert.ok(res.body.fact);
                 done();
             });
     });
