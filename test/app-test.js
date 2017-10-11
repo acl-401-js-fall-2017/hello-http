@@ -3,16 +3,18 @@ const chaiHttp = require('chai-http');
 const app = require('../lib/app');
 chai.use(chaiHttp);
 const assert = chai.assert;
-const greeting = require('../lib/greet-app');
 
 const request = chai.request(app);
 
 describe('hello-http app', () =>{
 
-    it('GET /name', () =>{
-        request.get('/name')
+    it('GET /greeting/name', (done) =>{
+        let name = 'Chewy';
+        request.get(`/greeting/${name}`)
             .end((err, res) =>{
-                assert.deepEqual(res.text, 'hello person');
+                if(err) return done(err);
+                assert.equal(res.text, 'hello Chewy');
+                done();
             });
     });
 
