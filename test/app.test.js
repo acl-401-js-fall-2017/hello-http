@@ -29,4 +29,32 @@ describe('/greeting App', () => {
             });
     });
 
+    it('returns greeting and salutation', done => {
+
+        request.get('/greeting/zac?salutation=hey')
+            .end((err, res) => {
+                if(err) done(err);
+                assert.equal(res.text, 'hey zac');
+                done();
+            });
+    });
+
+    // it('returns a random fact', done => {
+
+    //     request.get('/fact')
+    //         .then( res => {
+    //             assert.equal(res.text, )
+    //         });
+    // });
+
+    it('returns 404', done => {
+
+        request.get('/test')
+            .end((err, res ) => {
+                assert.equal(res.statusCode, 404);
+                assert.equal();
+                done();
+            });
+    });
+
 });
