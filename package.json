@@ -8,6 +8,7 @@
     "test": "test"
   },
   "dependencies": {
+    "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.8.0",
     "mkdirp": "^0.5.1",
