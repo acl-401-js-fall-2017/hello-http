@@ -42,21 +42,26 @@ describe('server', () => {
         it('returns status code 404 when given a bad path', done => {
             request.get('/test')
                 .end((err, res) => {
-                    if(err) return done(err);
-                    assert.equal(res.text, 'test');
+                    if(err) {
+                        assert.equal(res.statusCode, 404);
+                        return done();
+                    }
+                    assert.equal(res.statusCode, 404);
                     done();
                 });
             
         });
             
-        it('returns status code 404 when given something other than a get request', () => {
+        it('returns status code 404 when given something other than a get request', done => {
             request.post('/greeting')
                 .send({this: 'is', an: 'object'})
                 .set('accept', 'json')
                 .end((err, res) => {
-                    if(err) console.log(res.status);
-                    console.log(res.status);
-                    assert.equal();
+                    if(err) {
+                        assert.equal(res.statusCode, 404);
+                        return done();
+                    }
+                    assert.equal(res.statusCode, 404);
                     done();
                 });
         });
