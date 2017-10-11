@@ -18,17 +18,16 @@ describe('http greeting', () => {
             });
     });
 
-    it.only('GET /greeting/foo returns "hello, foo" text', done => {
+    it('GET /greeting/foo returns "hello, foo" text', done => {
         request.get('/greeting/foo')
             .end( (err, res) => {
                 if (err) return done(err);
-                console.log('res text is', res);
                 assert.equal(res.text, 'hello, foo');
                 done();
             });
     });
 
-    it('GET /greeting/foo?custom=hi returns "hi, foo" text', done => {
+    it.skip('GET /greeting/foo?custom=hi returns "hi, foo" text', done => {
         request.get('/greeting/foo?custom=hi')
             .end( (err, res) => {
                 if (err) return done(err);
@@ -37,11 +36,14 @@ describe('http greeting', () => {
             });
     });
 
-    it.skip('GET /fact returns object', (done) => {
+    it('GET /fact returns object with fact property', (done) => {
         request.get('/fact')
             .end( (err, res) => {
                 if (err) return done(err);
+                const resObject = res.body;
+                assert.ok(resObject.fact);
                 assert.equal(typeof res.body, 'object' );
+                done();
             });
     });
     
