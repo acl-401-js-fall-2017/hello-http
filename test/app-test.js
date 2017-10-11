@@ -1,3 +1,3 @@
 const http = require('http');
-const app = require('../lib/app/');
+const app = require('../lib/');
 
