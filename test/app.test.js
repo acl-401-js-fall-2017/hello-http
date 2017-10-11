@@ -1,14 +1,17 @@
 'use strict';
 
 const app = require('../lib/app');
+const http = require('http');
 const chai = require('chai');
 const chaiHTTP = require('chai-http');
 chai.use(chaiHTTP);
 const assert = chai.assert;
 
-const request = chai.request(app);
+const server = http.createServer(app);
+const request = chai.request(server);
 
 describe('server', () => {
+    after( done => server.close(done));
     describe('greeting', () => {
         it('responds with a greeting to /greeting/<name>', done => {
             request.get('/greeting/Mie')
