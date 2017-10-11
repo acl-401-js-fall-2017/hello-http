@@ -1,0 +1,33 @@
+{
+  "name": "hello-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "npm run mocha",
+    "mocha": "mocha",
+    "test:dev": "npm run mocha -- -w",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erdemkoral/hello-http.git"
+  },
+  "author": "Erdem Koral",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erdemkoral/hello-http/issues"
+  },
+  "homepage": "https://github.com/erdemkoral/hello-http#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1"
+  }
+}
