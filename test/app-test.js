@@ -26,6 +26,15 @@ describe('http greeting', () => {
                 done();
             });
     });
+
+    it('GET /greeting/foo?custom=hi returns "hi, foo" text', done => {
+        request.get('/greeting/foo?custom=hi')
+            .end( (err, res) => {
+                if (err) return done(err);
+                assert.equal(res.text, 'hi, foo');
+                done();
+            });
+    });
     
 });
 
