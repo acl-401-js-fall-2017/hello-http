@@ -3,12 +3,19 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
-
+const request = chai.request(app);
 
 
 describe('hello-http', () => {
     
-    const request = chai.request(app);
+    it('GET / greeting', (done) => {
+        request.get('/greeting')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'Hello stranger' );
+                done();
+            });
+    });
     
     it('GET / greeting/name', (done) => {
         let name = 'Jane';
