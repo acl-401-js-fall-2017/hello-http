@@ -16,5 +16,11 @@ describe('server', () => {
                 assert.equal(res.text, 'test');
                 done();
             });
+        request.post('/hello')
+            .send({this: 'is', an: 'object'})
+            .set('accept', 'json')
+            .end((err, res) => {
+                if(err) return done(err);
+            });
     });
 });
