@@ -11,16 +11,16 @@ describe('Tests Http', () => {
         request.get('/greeting')
             .end( (err,res) => {
                 if(err) return done(err);
-                assert.equal(res.text, 'Hello, stranger');
+                assert.equal(res.text, 'Hello stranger');
                 done();
             });
     });
 
     it('GET request returns greeting with NAME', (done) => {
-        request.get('greeting/Christina')
+        request.get('/greeting/Christina')
             .end( (err, res) => {
                 if(err) return done(err);
-                assert.equal(res.text, 'Hello, Christina');
+                assert.equal(res.text, 'Hello Christina');
                 done();
             });
     });
