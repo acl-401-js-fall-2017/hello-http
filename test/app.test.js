@@ -21,7 +21,7 @@ describe('app test', ()=>{
         request.get('/greeting')
             .end((err, res) =>{
                 if(err) return done(err);
-                assert.equal(res.text, '<h1>Hello Stranger</h1>');
+                assert.equal(res.text, '<h1>Hello stranger</h1>');
                 done();
             });
     });
