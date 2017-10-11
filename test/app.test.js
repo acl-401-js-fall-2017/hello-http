@@ -38,7 +38,18 @@ describe('server', () => {
         });
     });
 
-    describe('valid/invalid paths', () => {
+    describe('fact', () => {
+        it('returns a random http fact when called', () => {
+            request.get('/fact')
+                .end((err, res) => {
+                    if(err) return done(err);
+                    assert.ok(/^HTTP fact: /.test(res.text));
+                    done();
+                });
+        });
+    });
+
+    describe('invalid paths', () => {
         it('returns status code 404 when given a bad path', done => {
             request.get('/test')
                 .end((err, res) => {
