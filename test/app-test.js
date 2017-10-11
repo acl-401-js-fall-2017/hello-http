@@ -18,10 +18,11 @@ describe('http greeting', () => {
             });
     });
 
-    it('GET /greeting/foo returns "hello, foo" text', done => {
+    it.only('GET /greeting/foo returns "hello, foo" text', done => {
         request.get('/greeting/foo')
             .end( (err, res) => {
                 if (err) return done(err);
+                console.log('res text is', res);
                 assert.equal(res.text, 'hello, foo');
                 done();
             });
@@ -33,6 +34,14 @@ describe('http greeting', () => {
                 if (err) return done(err);
                 assert.equal(res.text, 'hi, foo');
                 done();
+            });
+    });
+
+    it.skip('GET /fact returns object', (done) => {
+        request.get('/fact')
+            .end( (err, res) => {
+                if (err) return done(err);
+                assert.equal(typeof res.body, 'object' );
             });
     });
     
