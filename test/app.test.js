@@ -27,6 +27,19 @@ describe('hello-http', () => {
             });
     });
 
-    
+    it.skip('GET / facts', (done) => {
+        request.get('/fact')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.deepEqual(res.body, [
+                    'Jake the Super Panda', 
+                    'Sally Sumo Panda',
+                    'Tiny'
+                ]);
+                done();
+            });
+    });
+
+
 
 });
