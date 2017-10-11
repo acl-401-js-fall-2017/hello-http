@@ -9,13 +9,20 @@ const request = chai.request(app);
 
 describe('http greeting', () => {
     
-    it('GET /greeting', done => {
-        console.log('about to test');
+    it('GET /greeting returns "hello, stranger" text', done => {
         request.get('/greeting')
             .end( (err, res) => {
-                console.log('in end callbck');
                 if (err) return done(err);
                 assert.equal(res.text, 'hello, stranger');
+                done();
+            });
+    });
+
+    it('GET /greeting/foo returns "hello, foo" text', done => {
+        request.get('/greeting/foo')
+            .end( (err, res) => {
+                if (err) return done(err);
+                assert.equal(res.text, 'hello, foo');
                 done();
             });
     });
