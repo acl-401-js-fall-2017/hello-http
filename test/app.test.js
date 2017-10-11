@@ -1,12 +1,18 @@
 const app = require('../lib/app');
+const http = require('http');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
-const request = chai.request(app);
+
 
 
 describe('hello-http', () => {
+
+    const server = http.createServer(app);
+    const request = chai.request(server);
+
+    after(done => server.close(done));
     
     it('GET / greeting', (done) => {
         request.get('/greeting')
