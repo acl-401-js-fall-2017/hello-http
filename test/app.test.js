@@ -26,5 +26,15 @@ describe('app test', ()=>{
             });
     });
 
+    it('GET /greeting/jack?salutation=yo should respond with yo jack', (done)=>{
+        request.get('/greeting/jack?salutation=yo')
+            .end((err, res) =>{
+                if(err) return done(err);
+                assert.equal(res.text, '<h1>yo jack</h1>');
+                done();
+            });
+
+    });
+
 
 });
