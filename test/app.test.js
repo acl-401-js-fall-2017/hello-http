@@ -34,11 +34,16 @@ describe('http server', () => {
                 assert.equal(res.text, 'hello stranger');
                 done();
             });
-
     });
 
-
-
-
+    it('GET /greeting with pre-set salutation', done => {
+        request.get('/greeting/jane?salutation=yo')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'yo jane');
+                done();
+            });
+    });
 
 });
+
