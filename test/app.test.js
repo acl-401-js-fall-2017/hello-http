@@ -27,6 +27,15 @@ describe('server', () => {
                     done();
                 });
         });
+
+        it('responds with given salutation if provided', done => {
+            request.get('/greeting?salutation=hi')
+                .end((err, res) => {
+                    if(err) return done(err);
+                    assert.equal(res.text, 'hi Stranger');
+                    done();
+                });
+        });
     });
 
     // it('runs', done => {
