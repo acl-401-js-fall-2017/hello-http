@@ -61,10 +61,12 @@ describe('http module', () => {
             });
     });
 
-    it('returns 404 message on invalid url', (done) => {
+    it('returns 404 message and status on invalid url', (done) => {
         request.get('/brokenlink')
             .end( (err, res) => {
                 if (err) {
+                    const expectedMessage = `CANNOT ${res.res.req.method} ${res.res.req.path}`;
+                    assert.equal(res.text, expectedMessage );
                     assert.equal(res.statusCode, 404);
                 }
                 done();
