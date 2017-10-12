@@ -2,11 +2,13 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
-
+const http = require('http');
 const app = require('../lib/app');
 
-const request = chai.request(app);
 
+const server = http.createServer(app);
+const request = chai.request(server);
+after(done => server.close(done));
 
 describe('app test', ()=>{
     it('GET /greeting/<name> should respond with Hello <name>',(done) => {
