@@ -7,14 +7,23 @@ const assert = chai.assert;
 const request = chai.request(app);
 
 describe('App', () => {
-    it('responds w/ greeting when GET /greeting/<name>', done => {
-        request.get(`/greeting/${app.name}`)
+    const name = 'Eli';
+    it('responds with greeting when GET /greeting/<name>', done => {
+        request.get(`/greeting/${name}`)
             .end((err, res) => {
                 if (err) return done(err); 
-                assert.equal(res.text, `hello ${app.name}`);
+                assert.equal(res.text, 'hello Eli');
                 done();
             });
     });
 
-    it('Get /greeting/<name>?salutation=<salutation>')
+    it('if salutation specified Get /greeting/<name>?salutation=<salutation>', done => {
+        const salutation = 'yo';
+        request.get(`/greeting/${name}?salutation=${salutation}`)
+            .end((err, res) => {
+                if (err) return done(err);
+                assert.equal(res.text, 'yo Eli');
+                done();
+            });
+    });
 });
