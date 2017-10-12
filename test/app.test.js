@@ -14,6 +14,15 @@ describe('hello-http', () => {
 
     after(done => server.close(done));
     
+    it('GET /', (done) => {
+        request.get('/')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'Welcome to Hello-Http' );
+                done();
+            });
+    });
+
     it('GET / greeting', (done) => {
         request.get('/greeting')
             .end((err, res) => {
@@ -33,15 +42,11 @@ describe('hello-http', () => {
             });
     });
 
-    it.skip('GET / facts', (done) => {
+    it('GET / fact', (done) => {
         request.get('/fact')
             .end((err, res) => {
                 if(err) return done(err);
-                assert.deepEqual(res.body, [
-                    'Jake the Super Panda', 
-                    'Sally Sumo Panda',
-                    'Tiny'
-                ]);
+                assert.ok(res.text);
                 done();
             });
     });
