@@ -4,15 +4,17 @@ const app = require('../lib/app');
 chai.use(chaiHTTP);
 const assert = chai.assert;
 
-const request = chai.request(app); //starting server and putting it in communication with the request object
+const request = chai.request(app);
 
-describe('Altcoin App', () => {
-    it('GET url path`', done => {
-        request.get('/greeting/${name}`')
+describe('App', () => {
+    it('responds w/ greeting when GET /greeting/<name>', done => {
+        request.get(`/greeting/${app.name}`)
             .end((err, res) => {
                 if (err) return done(err); 
-                assert.equal(res.text, 'hello `${name}`');
+                assert.equal(res.text, `hello ${app.name}`);
                 done();
             });
     });
+
+    it('Get /greeting/<name>?salutation=<salutation>')
 });
