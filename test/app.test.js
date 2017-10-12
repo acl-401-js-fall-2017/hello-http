@@ -51,9 +51,9 @@ describe('app test', ()=>{
     it('GET / should return 404',(done)=>{
         request.get('/')
             .end((err, res)=>{
-                if(err) return done(err);
-                assert.deepEqual(res.status, '404');
-                assert.deepEqual(res.text, '<h1>CANNOT GET /</h1>');
+                assert.deepEqual(res.status, 404);
+                assert.deepEqual(res.text, 'CANNOT GET /');
+                done();
             });
 
     });
