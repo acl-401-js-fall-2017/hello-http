@@ -1,0 +1,21 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Template",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "npm run mocha",
+    "mocha": "mocha",
+    "test:dev": "npm run mocha -- -w",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "author": "Eli Speigel <eli.speigel@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1"
+  }
+}
