@@ -2,7 +2,6 @@ Hello HTTP
 ======
 
 Use the Node.js `http` module to create an http server. 
-
 ## Directions
 
 Your server should:
