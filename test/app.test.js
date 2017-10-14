@@ -17,9 +17,9 @@ describe('http server', () => {
     
 
     
-    it('GET /greeting/name', done => {
+    it('GET /greetings/name', done => {
         const name = 'michele';
-        request.get(`/greeting/${name}`)
+        request.get(`/greetings/${name}`)
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'hello michele');
@@ -28,7 +28,7 @@ describe('http server', () => {
     });
 
     it('GET /greeting with no name', done => {
-        request.get('/greeting')
+        request.get('/greetings')
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'hello stranger');
@@ -37,7 +37,7 @@ describe('http server', () => {
     });
 
     it('GET /greeting with pre-set salutation', done => {
-        request.get('/greeting/jane?salutation=yo')
+        request.get('/greetings/jane?salutation=yo')
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'yo jane');
