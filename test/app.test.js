@@ -36,11 +36,21 @@ describe('http server', () => {
             });
     });
 
-    it('GET /greeting with pre-set salutation', done => {
+    it('GET /greetings with pre-set salutation', done => {
         request.get('/greetings/jane?salutation=yo')
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'yo jane');
+                done();
+            });
+    });
+
+    it('GET /not-found (404) when bad file path name given', done => {
+        request.get('/badFileName')
+            .end((err, res) => {
+                if(!err) return done('expected error');
+                assert.equal(res.status, '404');
+                assert.equal(res.text, 'Cannot GET badFileName');
                 done();
             });
     });
