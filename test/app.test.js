@@ -4,7 +4,6 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const assert = chai.assert;
 const app = require('../lib/app');
-
 const server = http.createServer(app);
 const request = chai.request(server);
 
@@ -40,5 +39,26 @@ describe('Tests Http', () => {
             });
 
     });
-});
 
+
+    it('GET /fact should repond with a fact about html', (done)=>{
+        request.get('/fact')
+            .end((err, res) =>{
+                if(err) return done(err);
+                const goodResponse = ['HTML is the best','HTMLso awesome','HTML is the past, present and future, Scott'];
+                assert.ok(goodResponse.includes(res.text));
+                done();
+            });
+
+    });
+
+    it('GET / should return 404',(done)=>{
+        request.get('/')
+            .end((err, res)=>{
+                assert.deepEqual(res.status, 404);
+                assert.deepEqual(res.text, 'CANNOT GET /');
+                done();
+            });
+
+    });
+});
