@@ -4,7 +4,6 @@ const http = require('http');
 chai.use(chaiHttp);
 const assert = chai.assert;
 const app = require ('../lib/app');
-// const request = chai.request(app);
 
 
 describe('http server', () => {
@@ -15,11 +14,10 @@ describe('http server', () => {
     after(done => server.close(done));
 
     
-
     
-    it('GET /greeting/name', done => {
+    it('GET /greetings/name', done => {
         const name = 'michele';
-        request.get(`/greeting/${name}`)
+        request.get(`/greetings/${name}`)
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'hello michele');
@@ -27,8 +25,9 @@ describe('http server', () => {
             });
     });
 
+
     it('GET /greeting with no name', done => {
-        request.get('/greeting')
+        request.get('/greetings')
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'hello stranger');
@@ -36,8 +35,9 @@ describe('http server', () => {
             });
     });
 
-    it('GET /greeting with pre-set salutation', done => {
-        request.get('/greeting/jane?salutation=yo')
+
+    it('GET /greetings with pre-set salutation', done => {
+        request.get('/greetings/jane?salutation=yo')
             .end((err, res) => {
                 if(err) return done(err);
                 assert.equal(res.text, 'yo jane');
@@ -45,5 +45,25 @@ describe('http server', () => {
             });
     });
 
+
+    it('GET /fact and return randomly 1 of 3 facts', done => {
+        request.get('/fact')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.ok(/http/.test(res.body.fact));
+                done();
+            });
+    });
+
+
+    it('GET /not-found (404) when bad file path name given', done => {
+        request.get('/badFileName')
+            .end((err, res) => {
+                if(!err) return done('expected error');
+                assert.equal(res.status, '404');
+                assert.equal(res.text, 'Cannot GET badFileName');
+                done();
+            });
+    });
 });
 
