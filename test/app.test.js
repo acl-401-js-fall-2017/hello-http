@@ -20,7 +20,6 @@ describe('greet app', () => {
                 assert.equal(res.text, 'hello Kate');
                 done();
             });
-
     });
 
 });
