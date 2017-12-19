@@ -31,4 +31,13 @@ describe('greet app', () => {
             });
     });
 
+    it('returns a greeting and salutation', done => {
+        request.get('/greet/MrBoJangles?salutation=Yo')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'Yo MrBoJangles');
+                done();
+            });
+    });
+
 });
