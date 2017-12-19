@@ -22,4 +22,13 @@ describe('greet app', () => {
             });
     });
 
+    it('gets a greeting with no name', done => {
+        request.get('/greet')
+            .end((err, res) => {
+                if(err) return done(err);
+                assert.equal(res.text, 'hello stranger');
+                done();
+            });
+    });
+
 });
