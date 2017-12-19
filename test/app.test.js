@@ -40,4 +40,13 @@ describe('greet app', () => {
             });
     });
 
+    it('sends a 404 if not found', done => {
+        request.get('/badRequest')
+            .end((err, res) => {
+                assert.equal(res.statusCode, 404);
+                assert.equal(res.text,'Cannot GET /badRequest');
+                done();
+            });
+    });
+
 });
